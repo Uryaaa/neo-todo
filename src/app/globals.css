@@ -2,20 +2,533 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Neobrutalism Theme Styles */
+@layer components {
+  /* Card styles */
+  .neobrutal-card {
+    @apply border-[5px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0)]
+    transition-all duration-200 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0)]
+    hover:translate-x-[-2px] hover:translate-y-[-2px] rounded-none;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Apply neobrutalism to all cards */
+  .card {
+    @apply border-[5px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0)]
+    transition-all duration-200 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0)]
+    hover:translate-x-[-2px] hover:translate-y-[-2px] rounded-none;
+  }
+
+  .neobrutal-card.completed {
+    @apply opacity-80 bg-gray-100;
+  }
+
+  /* Card color variations - using CSS variables for accent colors */
+  .card-accent {
+    @apply bg-[hsl(var(--accent-light))];
+  }
+
+  .card-accent-medium {
+    @apply bg-[hsl(var(--accent-medium))];
+  }
+
+  .card-accent-dark {
+    @apply bg-[hsl(var(--accent-dark))];
+  }
+
+  /* Legacy card colors for backward compatibility */
+  .card-pink {
+    @apply bg-pink-100;
+  }
+
+  .card-blue {
+    @apply bg-blue-100;
+  }
+
+  .card-yellow {
+    @apply bg-yellow-100;
+  }
+
+  .card-green {
+    @apply bg-green-100;
+  }
+
+  .card-purple {
+    @apply bg-purple-100;
+  }
+
+  .card-cyan {
+    @apply bg-cyan-50;
+  }
+
+  /* Button styles */
+  .neobrutal-button {
+    @apply bg-white border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0)]
+    transition-all duration-200 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0)]
+    hover:translate-x-[-1px] hover:translate-y-[-1px] rounded-none font-bold
+    active:shadow-[2px_2px_0px_0px_rgba(0,0,0)] active:translate-x-[2px] active:translate-y-[2px];
+  }
+
+  /* Apply neobrutalism to all buttons */
+  .btn, .button {
+    @apply bg-white border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0)]
+    transition-all duration-200 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0)]
+    hover:translate-x-[-1px] hover:translate-y-[-1px] rounded-none font-bold
+    active:shadow-[2px_2px_0px_0px_rgba(0,0,0)] active:translate-x-[2px] active:translate-y-[2px];
+  }
+
+  /* Accent color button */
+  .neobrutal-button-accent {
+    @apply bg-[hsl(var(--accent-medium)_/_0.7)] border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0)]
+    transition-all duration-200 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0)]
+    hover:translate-x-[-1px] hover:translate-y-[-1px] rounded-none font-bold
+    active:shadow-[2px_2px_0px_0px_rgba(0,0,0)] active:translate-x-[2px] active:translate-y-[2px];
+  }
+
+  /* Legacy button styles for backward compatibility */
+  .neobrutal-button-primary {
+    @apply bg-yellow-200 border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0)]
+    transition-all duration-200 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0)]
+    hover:translate-x-[-1px] hover:translate-y-[-1px] rounded-none font-bold
+    active:shadow-[2px_2px_0px_0px_rgba(0,0,0)] active:translate-x-[2px] active:translate-y-[2px];
+  }
+
+  /* Delete button style - Red */
+  .neobrutal-button-danger {
+    @apply bg-red-300 border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0)]
+    transition-all duration-200 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0)]
+    hover:translate-x-[-1px] hover:translate-y-[-1px] rounded-none font-bold
+    active:shadow-[2px_2px_0px_0px_rgba(0,0,0)] active:translate-x-[2px] active:translate-y-[2px];
+  }
+
+  /* Mark Complete button style - Green */
+  .neobrutal-button-success {
+    @apply bg-green-300 border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0)]
+    transition-all duration-200 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0)]
+    hover:translate-x-[-1px] hover:translate-y-[-1px] rounded-none font-bold
+    active:shadow-[2px_2px_0px_0px_rgba(0,0,0)] active:translate-x-[2px] active:translate-y-[2px];
+  }
+
+  /* Edit button style - Soft Blue */
+  .neobrutal-button-edit {
+    @apply bg-blue-200 border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0)]
+    transition-all duration-200 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0)]
+    hover:translate-x-[-1px] hover:translate-y-[-1px] rounded-none font-bold
+    active:shadow-[2px_2px_0px_0px_rgba(0,0,0)] active:translate-x-[2px] active:translate-y-[2px];
+  }
+
+  /* Mark Incomplete button style - Gray (for completed todos) */
+  .neobrutal-button-incomplete {
+    @apply bg-gray-200 border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0)]
+    transition-all duration-200 hover:shadow-[5px_5px_0px_0px_rgba(0,0,0)]
+    hover:translate-x-[-1px] hover:translate-y-[-1px] rounded-none font-bold
+    active:shadow-[2px_2px_0px_0px_rgba(0,0,0)] active:translate-x-[2px] active:translate-y-[2px];
+  }
+
+  /* Badge styles */
+  .neobrutal-badge {
+    @apply border-[3px] border-black font-bold px-2 py-0.5 text-xs rounded-none;
+  }
+
+  /* Accent color badge */
+  .neobrutal-badge-accent {
+    @apply bg-[hsl(var(--accent-medium))];
+  }
+
+  /* Legacy badge styles for backward compatibility */
+  .neobrutal-badge-high {
+    @apply bg-red-400;
+  }
+
+  .neobrutal-badge-medium {
+    @apply bg-yellow-300;
+  }
+
+  .neobrutal-badge-low {
+    @apply bg-green-400;
+  }
+
+  /* Filter container */
+  .neobrutal-filter-container {
+    @apply bg-[hsl(var(--accent-medium))] border-[5px] border-black p-4 shadow-[6px_6px_0px_0px_rgba(0,0,0)];
+  }
+
+  /* Neobrutalism containers and sections */
+  .neobrutal-container {
+    @apply border-[5px] border-black p-4 shadow-[6px_6px_0px_0px_rgba(0,0,0)];
+  }
+
+  .neobrutal-header {
+    @apply bg-[hsl(var(--accent-medium))] border-b-[5px] border-black;
+  }
+
+  .neobrutal-sidebar {
+    @apply bg-[hsl(var(--accent-light)_/_0.7)] border-r-[5px] border-black;
+  }
+
+  .neobrutal-main {
+    @apply bg-white min-h-[calc(100vh-4rem)];
+  }
+
+  .neobrutal-footer {
+    @apply bg-[hsl(var(--accent-light))] border-t-[5px] border-black;
+  }
+
+  /* Neobrutalism form elements */
+  .neobrutal-input {
+    @apply border-[3px] border-black rounded-none px-3 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0)]
+    focus:shadow-[4px_4px_0px_0px_rgba(0,0,0)] focus:translate-x-[-2px] focus:translate-y-[-2px]
+    transition-all duration-200;
+  }
+
+  .neobrutal-select {
+    @apply border-[3px] border-black rounded-none px-3 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0)]
+    focus:shadow-[4px_4px_0px_0px_rgba(0,0,0)] focus:translate-x-[-2px] focus:translate-y-[-2px]
+    transition-all duration-200;
+  }
+
+  .neobrutal-textarea {
+    @apply border-[3px] border-black rounded-none px-3 py-2 shadow-[2px_2px_0px_0px_rgba(0,0,0)]
+    focus:shadow-[4px_4px_0px_0px_rgba(0,0,0)] focus:translate-x-[-2px] focus:translate-y-[-2px]
+    transition-all duration-200;
+  }
+
+  /* Accent color form elements */
+  .neobrutal-input-accent:focus, .neobrutal-select-accent:focus, .neobrutal-textarea-accent:focus {
+    @apply border-[hsl(var(--accent-medium))];
+  }
+
+  /* Animation classes */
+  .animate-wiggle {
+    animation: wiggle 0.3s ease-in-out;
+  }
+
+  .animate-pop {
+    animation: pop 0.3s ease-out;
+  }
+
+  /* Hover animations */
+  .hover-wiggle:hover {
+    animation: wiggle 0.3s ease-in-out;
+  }
+
+  .hover-pop:hover {
+    animation: pop 0.3s ease-out;
+  }
+
+  /* All buttons now use consistent hover-pop animation */
+
+  /* Pagination specific styles */
+  .pagination-container {
+    @apply flex items-center justify-center space-x-2 mt-8 p-4 bg-[hsl(var(--accent-light)_/_0.3)] border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0)];
+  }
+
+  /* Search input specific styles */
+  .search-container {
+    @apply relative w-full max-w-md mx-auto;
+  }
+
+  /* Dialog and Modal improvements for mobile */
+  .neobrutal-dialog {
+    @apply border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0)]
+    max-h-[90vh] overflow-y-auto overscroll-contain
+    max-w-[95vw] sm:max-w-md;
+  }
+
+  /* Mobile navigation improvements */
+  .mobile-nav-scrollable {
+    @apply h-full overflow-y-auto overscroll-contain;
+    /* Ensure smooth scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent body scroll when modal is open */
+  .modal-open {
+    @apply overflow-hidden;
+  }
+
+  /* Better mobile viewport handling */
+  @supports (height: 100dvh) {
+    .mobile-nav-height {
+      height: calc(100dvh - 4rem);
+    }
+  }
+
+  /* Fallback for browsers without dvh support */
+  .mobile-nav-height {
+    height: calc(100vh - 4rem);
+  }
+
+  /* Touch-friendly improvements for mobile */
+  @media (max-width: 768px) {
+    .neobrutal-dialog {
+      @apply max-h-[85vh] m-4;
+      /* Ensure modal doesn't take full screen height on mobile */
+    }
+
+    /* Better touch targets for mobile */
+    .mobile-nav-scrollable nav a,
+    .mobile-nav-scrollable nav button {
+      @apply min-h-[44px] touch-manipulation;
+    }
+
+    /* Prevent zoom on input focus on iOS */
+    input, select, textarea {
+      font-size: 16px;
+    }
+  }
+
+  /* Prevent background scroll when modal is open */
+  body.modal-open {
+    @apply overflow-hidden;
+    position: fixed;
+    width: 100%;
+  }
+
+  /* Ensure proper responsive behavior */
+  @media (min-width: 768px) {
+    /* Force cleanup of mobile nav styles on desktop */
+    body.modal-open {
+      position: static !important;
+      overflow: auto !important;
+      width: auto !important;
+      top: auto !important;
+    }
+
+    /* Ensure mobile nav is hidden on desktop */
+    .mobile-nav-container {
+      display: none !important;
+    }
+  }
+
+  /* Smooth scrolling for better UX */
+  .mobile-nav-scrollable,
+  .neobrutal-dialog {
+    scroll-behavior: smooth;
+  }
+
+  /* Thin/Invisible Scrollbars */
+  /* For Webkit browsers (Chrome, Safari, Edge) */
+  .mobile-nav-scrollable::-webkit-scrollbar,
+  .neobrutal-dialog::-webkit-scrollbar,
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .mobile-nav-scrollable::-webkit-scrollbar-track,
+  .neobrutal-dialog::-webkit-scrollbar-track,
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .mobile-nav-scrollable::-webkit-scrollbar-thumb,
+  .neobrutal-dialog::-webkit-scrollbar-thumb,
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    border: none;
+  }
+
+  .mobile-nav-scrollable::-webkit-scrollbar-thumb:hover,
+  .neobrutal-dialog::-webkit-scrollbar-thumb:hover,
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Invisible scrollbars */
+  .scrollbar-invisible::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-invisible {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  /* For Firefox - thin scrollbars */
+  .mobile-nav-scrollable,
+  .neobrutal-dialog,
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+  }
+
+  /* Global thin scrollbars for the entire app */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    border: none;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  /* Special styling for neobrutalism containers */
+  .neobrutal-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .neobrutal-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border: 2px solid black;
+  }
+
+  .neobrutal-scrollbar::-webkit-scrollbar-thumb {
+    background: #888;
+    border: 2px solid black;
+    border-radius: 0;
+  }
+
+  .neobrutal-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  /* Select dropdown scrollbars */
+  [data-radix-select-content] {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+  }
+
+  [data-radix-select-content]::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  [data-radix-select-content]::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  [data-radix-select-content]::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+  }
+
+  [data-radix-select-content]::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Toast viewport scrollbars */
+  [data-radix-toast-viewport] {
+    scrollbar-width: none;
+  }
+
+  [data-radix-toast-viewport]::-webkit-scrollbar {
+    display: none;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Animations */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+@keyframes pop {
+  0% { transform: scale(0.95); }
+  40% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+/* Removed unused animations - all buttons now use consistent hover-pop */
+
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+
+    /* Neobrutalism accent colors - default pink */
+    --accent-color: pink;
+    --accent-light: 330 100% 95%;
+    --accent-medium: 330 100% 85%;
+    --accent-dark: 330 100% 75%;
+  }
+
+  /* Accent color variations */
+  .accent-blue {
+    --accent-light: 210 80% 90%;
+    --accent-medium: 210 80% 75%;
+    --accent-dark: 210 80% 60%;
+  }
+
+  .accent-pink {
+    --accent-light: 330 100% 95%;
+    --accent-medium: 330 100% 85%;
+    --accent-dark: 330 100% 75%;
+  }
+
+  .accent-green {
+    --accent-light: 120 80% 90%;
+    --accent-medium: 120 80% 75%;
+    --accent-dark: 120 80% 60%;
+  }
+
+  .accent-yellow {
+    --accent-light: 55 100% 90%;
+    --accent-medium: 55 100% 75%;
+    --accent-dark: 55 100% 60%;
+  }
+
+  .accent-orange {
+    --accent-light: 25 100% 90%;
+    --accent-medium: 25 100% 75%;
+    --accent-dark: 25 100% 60%;
+  }
+
+  .accent-purple {
+    --accent-light: 270 80% 90%;
+    --accent-medium: 270 80% 75%;
+    --accent-dark: 270 80% 60%;
+  }
+
+  .accent-cyan {
+    --accent-light: 180 80% 90%;
+    --accent-medium: 180 80% 75%;
+    --accent-dark: 180 80% 60%;
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
